@@ -6,7 +6,7 @@ import java.awt.*;
  * Класс "Фигура для рисования".
  * Класс содержит начальную и конечную точку, а также различные методы
  */
-public abstract class DrawShape {
+public class DrawShape {
 
     // Константы для типов фигур
     public static final int SHAPE_RECTANGLE = 0;
@@ -36,7 +36,9 @@ public abstract class DrawShape {
         return this.getShape(startPoint, endPoint);
     }
 
-    public abstract Shape getShape(Point startPoint, Point endPoint);
+    public Shape getShape(Point startPoint, Point endPoint) {
+            throw new OverrideGetShape();
+    };
 
     public void setStartPoint(Point startPoint) {
         this.startPoint = startPoint;
@@ -44,5 +46,12 @@ public abstract class DrawShape {
 
     public void setEndPoint(Point endPoint) {
         this.endPoint = endPoint;
+    }
+
+}
+
+class OverrideGetShape extends IllegalArgumentException {
+    public OverrideGetShape(){
+        super("Нужно переопределить метод getShape() для рисования");
     }
 }
